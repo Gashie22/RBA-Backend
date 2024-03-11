@@ -19,8 +19,9 @@ export const Login = async (req, res) =>{
     res.status(200).json({uuid, name, email, role});
 }
   
-//funct to get user login
+//funct to get user full details
 export const Me = async (req, res) =>{
+    console.log(req)
     if(!req.session.userId){ //if theres no session id
         return res.status(401).json({msg: "Login into account!"});
     }
