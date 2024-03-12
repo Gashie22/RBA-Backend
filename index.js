@@ -36,7 +36,7 @@ app.use(session({
 
 app.use(cors({
     credentials: true,
-    origin: 'https://elmala-db.onrender.com'
+    origin: ''
 }));
 app.use(express.json());
 app.use(UserRoute);
