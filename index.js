@@ -36,7 +36,7 @@ app.use(session({
 
 app.use(cors({
     credentials: true,
-    origin: ''
+    origin: 'https://elaladb.onrender.com'
 }));
 app.use(express.json());
 app.use(UserRoute);
