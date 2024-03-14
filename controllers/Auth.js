@@ -25,15 +25,7 @@ export const Me = async (req, res) =>{
     console.log(req)
     if(!req.session.userId){ //if theres no session id
         console.log("no session id here")
-       // return res.status(405).json({msg: "Login into account!"});
-       const user = await User.findOne({
-        attributes:['uuid','name','email','role'],
-        where: {
-            uuid: req.session.userId
-        }
-    });
-    if(!user) return res.status(404).json({msg: "User does not exist"});
-    res.status(200).json(user);
+        return res.status(403).json({msg: "Login into account!"});
     }
     const user = await User.findOne({
         attributes:['uuid','name','email','role'],
