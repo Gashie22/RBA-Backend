@@ -17,6 +17,7 @@ export const Login = async (req, res) =>{
     const email = user.email;
     const role = user.role;
     res.status(200).json({uuid, name, email, role});
+    console.log("user found")
 }
   
 //funct to get user full details
@@ -24,7 +25,15 @@ export const Me = async (req, res) =>{
     console.log(req)
     if(!req.session.userId){ //if theres no session id
         console.log("no session id here")
-        return res.status(401).json({msg: "Login into account!"});
+       // return res.status(405).json({msg: "Login into account!"});
+       const user = await User.findOne({
+        attributes:['uuid','name','email','role'],
+        where: {
+            uuid: req.session.userId
+        }
+    });
+    if(!user) return res.status(404).json({msg: "User does not exist"});
+    res.status(200).json(user);
     }
     const user = await User.findOne({
         attributes:['uuid','name','email','role'],
