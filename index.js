@@ -20,9 +20,9 @@ const store = new sessionStore({
     db: db //from the db imported
 });
 
- //(async()=>{
-    //await db.sync();
- //})();   
+ (async()=>{
+    await db.sync();
+ })();   
 
 app.use(session({
     secret: process.env.SESS_SECRET,
