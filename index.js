@@ -50,6 +50,6 @@ app.use(AuthRoute);
 
 store.sync();
 
-app.listen(process.env.APP_PORT,"0.0.0.0", ()=> {
+app.listen(process.env.APP_PORT, ()=> {
     console.log('Server up and running...');
 });
