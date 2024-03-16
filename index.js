@@ -39,13 +39,15 @@ app.use(session({
     }
 }));
 
+
 app.options('*', cors());
 
 
 app.use(cors({
     credentials: true,
-    origin: '*'
+    origin: 'https://elaladb.onrender.com'
 }));
+
 
 
 app.use(express.json());
