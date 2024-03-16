@@ -24,25 +24,18 @@ const store = new sessionStore({
     await db.sync();
  })();   
 
-app.use(session({
+ app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
    store: store,
     cookie: {
-        
-            httpOnly: false,
-            sameSite: 'none',  //<===
-            expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-            maxAge: 1000 * 60 * 60 * 24 * 7
-        
+        secure: 'auto'
     }
 }));
 
-app.use(cors({
-    credentials: true,
-    origin: 'https://elaladb.onrender.com'
-}));
+app.use(cors());
+
 app.use(express.json());
 app.use(UserRoute);
 app.use(ProductRoute);
