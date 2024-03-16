@@ -39,19 +39,20 @@ app.use(session({
     }
 }));
 
+app.options('*', cors());
+
+
 app.use(cors({
     credentials: true,
-    origin: 'https://elaladb.onrender.com'
+    origin: '*'
 }));
+
 
 app.use(express.json());
 app.use(UserRoute);
-//app.use(ProductRoute);
+app.use(ProductRoute);
 app.use(AuthRoute);
 
-app.get('/dashboard', function (req, res, next) {
-    res.json({msg: 'This is CORS-enabled for all origins!'})
-  })
 
 store.sync();
 
