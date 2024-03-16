@@ -14,10 +14,12 @@ const app = express();
  
 app.use(cors({
     origin: "https://elaladb.onrender.com",
-    credentials: true ;
+    credentials: true 
 }
 ))
 app.options('*', cors())
+
+
 //session template (store included)
 const sessionStore = SequelizeStore(session.Store);
 
@@ -44,8 +46,6 @@ app.use(session({
     }
 }));
  
-
-
 
 
 
