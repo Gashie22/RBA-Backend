@@ -40,16 +40,17 @@ app.use(session({
 }));
 
 
-app.options('https://elaladb.onrender.com', cors());
 
 
 app.use(cors({
     
     origin: 'https://elaladb.onrender.com',
+    optionsSuccessStatus: 200,
     headers : ["Content-Type"],
     credentials: true,
 
 }));
+app.options('https://elaladb.onrender.com', cors());
 
 
 
