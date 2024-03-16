@@ -13,7 +13,8 @@ dotenv.config();
 const app = express();
  
 app.use(cors({
-    origin: "https://elaladb.onrender.com"
+    origin: "https://elaladb.onrender.com",
+    credentials: true ;
 }
 ))
 app.options('*', cors())
