@@ -44,8 +44,11 @@ app.options('https://elaladb.onrender.com', cors());
 
 
 app.use(cors({
+    
+    origin: 'https://elaladb.onrender.com',
+    headers : ["Content-Type"],
     credentials: true,
-    origin: 'https://elaladb.onrender.com'
+
 }));
 
 
