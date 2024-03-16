@@ -24,28 +24,34 @@ const store = new sessionStore({
     await db.sync();
  })();   
 
- app.use(session({
+app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
    store: store,
     cookie: {
-        secure: 'auto'
+        
+            httpOnly: false,
+            sameSite: 'none',  //<===
+            expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+            maxAge: 1000 * 60 * 60 * 24 * 7
+        
     }
 }));
 
-app.use(function(req, res, next) {
+app.use(cors({
     credentials: true,
-    res.header("Access-Control-Allow-Origin", "https://elaladb.onrender.com"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-  
+    origin: 'https://elaladb.onrender.com'
+}));
 
 app.use(express.json());
 app.use(UserRoute);
-app.use(ProductRoute);
+//app.use(ProductRoute);
 app.use(AuthRoute);
+
+app.get('/dashboard', function (req, res, next) {
+    res.json({msg: 'This is CORS-enabled for all origins!'})
+  })
 
 store.sync();
 
