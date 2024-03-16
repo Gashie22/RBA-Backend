@@ -12,7 +12,11 @@ dotenv.config();
 
 const app = express();
  
-
+app.use(cors({
+    origin: "https://elaladb.onrender.com"
+}
+))
+app.options('*', cors())
 //session template (store included)
 const sessionStore = SequelizeStore(session.Store);
 
@@ -38,19 +42,10 @@ app.use(session({
         
     }
 }));
+ 
 
 
 
-
-app.use(cors({
-    
-    origin: 'https://elaladb.onrender.com',
-    optionsSuccessStatus: 200,
-    headers : ["Content-Type"],
-    credentials: true,
-
-}));
-app.options('https://elaladb.onrender.com', cors());
 
 
 
