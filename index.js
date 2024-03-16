@@ -40,7 +40,7 @@ app.use(session({
 }));
 
 
-app.options('*', cors());
+app.options('https://elaladb.onrender.com', cors());
 
 
 app.use(cors({
