@@ -11,53 +11,44 @@ import AuthRoute from "./routes/AuthRoute.js";
 dotenv.config();
 
 const app = express();
- 
+
+// CORS configuration:
 app.use(cors({
-    origin: "https://elaladb.onrender.com",
-    credentials: true 
-}
-))
-app.options('*', cors())
+    origin: "https://elaladb.onrender.com", // Specific allowed origin for security
+    credentials: true, // Allow sending cookies for authenticated requests
+}));
+app.options('*', cors()); // Handle preflight requests with CORS headers
 
-
-//session template (store included)
-const sessionStore = SequelizeStore(session.Store);
-
-const store = new sessionStore({
-    db: db //from the db imported
+// Secure session configuration:
+const sessionStore = new SequelizeStore({
+    db: db,
 });
-
- (async()=>{
-    await db.sync();
- })();   
 
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
-   store: store,
+    store: sessionStore,
     cookie: {
-        
-            httpOnly: false,
-            sameSite: 'none',  //<===
-            expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-            maxAge: 1000 * 60 * 60 * 24 * 7
-        
-    }
+        secure: true, // Ensure cookies are only sent over HTTPS
+        sameSite: 'none', // Allow cross-site usage for authenticated requests
+        httpOnly: true // Prevent client-side JavaScript access for security
+
+    },
 }));
- 
 
-
-
+// Database and routes:
+(async () => {
+    await db.sync();
+})();
 
 app.use(express.json());
 app.use(UserRoute);
 app.use(ProductRoute);
 app.use(AuthRoute);
 
+store.sync(); // Initialize session store after routes
 
-store.sync();
-
-app.listen(process.env.APP_PORT, ()=> {
-    console.log('Server up and running...');
+app.listen(process.env.APP_PORT, () => {
+    console.log("Server up and running...");
 });
