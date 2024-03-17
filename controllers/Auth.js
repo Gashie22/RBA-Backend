@@ -17,15 +17,12 @@ export const Login = async (req, res) =>{
     const email = user.email;
     const role = user.role;
     res.status(200).json({uuid, name, email, role});
-    console.log("user found")
 }
   
-//funct to get user full details
+//funct to get user login
 export const Me = async (req, res) =>{
-    console.log(req)
     if(!req.session.userId){ //if theres no session id
-        console.log("no session id here")
-     //   return res.status(403).json({msg: "Login into account!"});
+        return res.status(401).json({msg: "Login into account!"});
     }
     const user = await User.findOne({
         attributes:['uuid','name','email','role'],
