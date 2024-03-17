@@ -22,7 +22,7 @@ export const Login = async (req, res) =>{
 //funct to get user login
 export const Me = async (req, res) =>{
     if(!req.session.userId){ //if theres no session id
-        return res.status(401).json({msg: "Login into account!"});
+
     }
     const user = await User.findOne({
         attributes:['uuid','name','email','role'],
