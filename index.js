@@ -51,10 +51,12 @@ const store = new sessionStore({
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: store,
     cookie: {
         secure: 'false',
+        httpOnly: true,
+        sameSite: 'lax'
     }
 }));
 
