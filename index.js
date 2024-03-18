@@ -48,6 +48,11 @@ app.use(cors(corsOptions))
 //     origin: 'http://localhost:3000' 
 // }));
 app.use(express.json());
+app.get("/test", (req, res)=> {
+    res.json({
+        "message": "Just a test"
+    })
+})
 app.use(UserRoute);
 app.use(ProductRoute);
 app.use(NotesRoute);
