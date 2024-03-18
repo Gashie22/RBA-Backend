@@ -48,7 +48,7 @@ app.use(session({
 
 
 app.use(express.json());
-app.get("/test", (req, res)=> {
+app.get("/me", (req, res)=> {
     res.json({
         "message": "Just a test"
     })
