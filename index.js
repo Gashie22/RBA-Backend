@@ -1,5 +1,5 @@
 import express from "express";
-import customCorsMiddleware from "./middleware/customCORSMiddleware.js";
+import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
@@ -36,8 +36,10 @@ app.use(session({
     }
 }));
 
-
-app.use(customCorsMiddleware); // Use your custom middleware
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000' 
+}));
 app.use(express.json()); 
 app.use(UserRoute);
 app.use(ProductRoute);
