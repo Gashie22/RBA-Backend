@@ -28,12 +28,6 @@ app.use((req, res, next) => {
 });
 
 
-app.use((req, res, next) => {
-    console.log("Passed this")
-    console.log(req.session.userId)
-    next();
-})
-
 app.use(cors({
     methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -61,13 +55,19 @@ app.use(session({
     store: store,
     cookie: {
         secure: 'auto',
-        path: '/',
-        httpOnly: true,
-        sameSite: "lax"
     }
 }));
-// ==>
 
+
+app.use((req, res, next) => {
+    console.log("Passed this")
+    if(req.session.userId !== undefined){
+        console.log(req.session.userId)
+    } else {
+        console.log("Undefined")
+    }
+    next();
+})
 
 
 

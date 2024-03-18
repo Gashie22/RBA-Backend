@@ -13,8 +13,9 @@ export const Login = async (req, res) =>{
     //set session if paasword matches
     req.session.userId = user.uuid;
     console.log("Set req.session.userId")
+    console.log(user.uuid)
     console.log(req.session.userId)
-    
+
     const uuid = user.uuid;
     const name = user.name;
     const email = user.email;
