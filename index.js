@@ -14,14 +14,17 @@ dotenv.config();
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 app.use(cors({
     methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     credentials: true,
-    origin: true
+    origin: ['*']
 }));
 
 
+//this is screwing things
 //session template (store included)
 const sessionStore = SequelizeStore(session.Store);
 
@@ -39,20 +42,18 @@ app.use(session({
     saveUninitialized: true,
     store: store,
     cookie: {
-        secure: 'auto'
+        secure: 'auto',
+        path: '/',
+        httpOnly: true,
+        sameSite: "lax"
     }
 }));
-
+// ==>
 
 
 
 
 app.use(express.json());
-app.get("/me", (req, res)=> {
-    res.json({
-        "message": "Just a test"
-    })
-})
 app.use(UserRoute);
 app.use(ProductRoute);
 app.use(NotesRoute);
