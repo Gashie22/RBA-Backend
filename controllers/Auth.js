@@ -21,6 +21,7 @@ export const Login = async (req, res) =>{
   
 //funct to get user login
 export const Me = async (req, res) =>{
+   try {
     if(!req.session.userId){ //if theres no session id
 
     }
@@ -32,6 +33,13 @@ export const Me = async (req, res) =>{
     });
     if(!user) return res.status(404).json({msg: "User does not exist"});
     res.status(200).json(user);
+   } catch (error) {
+    console.log("===============================")
+    console.log(error)
+    res.status(500).json({
+        "message": "Exception"
+    });
+   }
 }
 
 export const logOut = (req, res) =>{
