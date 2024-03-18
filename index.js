@@ -11,20 +11,20 @@ import NotesRoute from "./routes/NotesRoute.js";
 
 
 dotenv.config();
- 
+
 const app = express();
- 
+
 
 //session template (store included)
 const sessionStore = SequelizeStore(session.Store);
 
 const store = new sessionStore({
     db: db //from the db imported
-}); 
+});
 
- (async()=>{
-   await db.sync();
- })();   
+(async () => {
+    await db.sync();
+})();
 
 app.use(session({
     secret: process.env.SESS_SECRET,
@@ -36,20 +36,25 @@ app.use(session({
     }
 }));
 
-app.use(cors());
+let corsOptions = {
+    origin: ['http://localhost:3000'],
+}
+
+app.use(cors(corsOptions))
+
 
 // app.use(cors({
 //     credentials: true,
 //     origin: 'http://localhost:3000' 
 // }));
-app.use(express.json()); 
+app.use(express.json());
 app.use(UserRoute);
 app.use(ProductRoute);
 app.use(NotesRoute);
-app.use(AuthRoute); 
+app.use(AuthRoute);
 
 store.sync();
 
-app.listen(process.env.APP_PORT, ()=> {
+app.listen(process.env.APP_PORT, () => {
     console.log('Server up and running...');
 });
