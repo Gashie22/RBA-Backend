@@ -39,10 +39,11 @@ app.use(session({
 
 app.use(cors({
     methods: ['GET', 'POST', 'PUT'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Origin', 'Access-Control-Allow-Origin'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     credentials: true,
-    origin: 'http://localhost:3000' ,
+    origin: 'http://localhost:3000',
 }));
+
 
 app.use(express.json());
 app.get("/test", (req, res)=> {
