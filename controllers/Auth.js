@@ -12,6 +12,9 @@ export const Login = async (req, res) =>{
     if(!match) return res.status(400).json({msg: "Wrong Password"});
     //set session if paasword matches
     req.session.userId = user.uuid;
+    console.log("Set req.session.userId")
+    console.log(req.session.userId)
+    
     const uuid = user.uuid;
     const name = user.name;
     const email = user.email;
