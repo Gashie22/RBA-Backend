@@ -39,7 +39,7 @@ app.use(session({
 
 app.use(cors({
     methods: ['GET', 'POST', 'PUT'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Origin'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Origin', 'Access-Control-Allow-Origin'],
     credentials: true,
     origin: 'http://localhost:3000' ,
 }));
