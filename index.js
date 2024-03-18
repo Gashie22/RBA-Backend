@@ -36,7 +36,7 @@ app.use(cors({
 }));
 
 
-//this is screwing things
+
 //session template (store included)
 const sessionStore = SequelizeStore(session.Store);
 
@@ -54,7 +54,7 @@ app.use(session({
     saveUninitialized: true,
     store: store,
     cookie: {
-        secure: 'auto',
+        secure: 'false',
     }
 }));
 
