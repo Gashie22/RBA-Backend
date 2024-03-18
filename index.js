@@ -16,7 +16,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'https://rba-frontend.vercel.app/', // Your React app's URL
+    origin: 'https://rba-frontend.vercel.app', // Your React app's URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Include DELETE if you're using it
     credentials: true, // Important for sessions
 }));
@@ -40,9 +40,7 @@ app.use(session({
     saveUninitialized: false,
     store: store,
     cookie: {
-        secure: 'false',
-        httpOnly: true,
-        sameSite: 'lax'
+        secure: 'true',
     }
 }));
 
