@@ -14,26 +14,12 @@ dotenv.config();
 
 const app = express();
 
-app.set('trust proxy', 1);
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-        return res.status(200).json({});
-    }
-    next();
-});
-
-
-// app.use(cors({
-//     methods: ['GET', 'POST', 'PUT'],
-//     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-//     credentials: true,
-//     origin: 'http://localhost:3000'
-// }));
+app.use(cors({
+    origin: 'http://localhost:3000', // Your React app's URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Include DELETE if you're using it
+    credentials: true, // Important for sessions
+}));
 
 
 
