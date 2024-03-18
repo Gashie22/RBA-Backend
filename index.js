@@ -38,6 +38,8 @@ app.use(session({
 
 
 app.use(cors({
+    methods: '*',
+    allowedHeaders: '*',
     credentials: true,
     origin: 'http://localhost:3000' 
 }));
