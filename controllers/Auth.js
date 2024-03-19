@@ -3,8 +3,8 @@ import cors from "cors";
 import argon2 from "argon2";
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://elmala.com");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
+    res.header("Access-Control-Allow-Origin", "https://rba-frontend.vercel.app/");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
