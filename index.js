@@ -15,12 +15,12 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors({
-    origin: 'https://elmala.com', // Your React app's URL
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Include DELETE if you're using it
-    credentials: true, // Important for sessions
-}));
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://elmala.com");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
 
 
 //session template (store included)
@@ -45,7 +45,7 @@ app.use(session({
         sameSite: 'lax'
     }
 }));
-
+app.use(cors({ origin: null , credentials :  true,allowedHeaders:['Content-Type', 'Authorization']}));
 
 app.use((req, res, next) => {
     console.log("Passed this")
