@@ -46,7 +46,7 @@ app.use(session({
         sameSite: 'lax'
     }
 }));
-app.use(cors({ origin: null , credentials :  true,allowedHeaders:['Content-Type', 'Authorization']}));
+app.use(cors({ origin: 'https://rba-frontend.vercel.app' , credentials :  true,allowedHeaders:['Content-Type', 'Authorization']}));
 
 app.use((req, res, next) => {
     console.log("Passed this")
