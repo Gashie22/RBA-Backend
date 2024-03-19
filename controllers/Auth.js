@@ -1,5 +1,15 @@
 import User from "../models/UserModel.js";
+import cors from "cors";
 import argon2 from "argon2";
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://elmala.com");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
+
+app.use(cors({ origin: null , credentials :  false,allowedHeaders:['Content-Type', 'Authorization']}));
 
 export const Login = async (req, res) =>{
     const user = await User.findOne({
