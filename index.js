@@ -16,7 +16,7 @@ const app = express();
 
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://rba-frontend.vercel.app");
+    res.header("Access-Control-Allow-Origin", "https://rba-frontend.vercel.app,https://rba-frontend.vercel.app/me");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");//'Access-Control-Allow-Credentials'
     res.header("Access-Control-Allow-Credentials", "true");//'Access-Control-Allow-Credentials'
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -46,7 +46,7 @@ app.use(session({
         sameSite: 'lax'
     }
 }));
-app.use(cors({ origin: 'https://rba-frontend.vercel.app' , credentials :  true,allowedHeaders:['Content-Type', 'Authorization']}));
+app.use(cors({ origin: 'https://rba-frontend.vercel.app/me , https://rba-frontend.vercel.app' , credentials :  true,allowedHeaders:['Content-Type', 'Authorization']}));
 
 app.use((req, res, next) => {
     console.log("Passed this")
