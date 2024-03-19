@@ -16,7 +16,7 @@ const app = express();
 
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://rba-frontend.vercel.app,https://rba-frontend.vercel.app/me");
+    res.header("Access-Control-Allow-Origin", "https://rba-frontend.vercel.app/me");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");//'Access-Control-Allow-Credentials'
     res.header("Access-Control-Allow-Credentials", "true");//'Access-Control-Allow-Credentials'
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
