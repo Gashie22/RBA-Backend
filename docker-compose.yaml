@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  kindred:
+    build: .
+    container_name: rba-backend
+    ports:
+      - "3001:3000"
+    networks:
+      - nodejs
+    restart: always
+  
+networks:
+  nodejs:
+    driver: bridge
