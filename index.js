@@ -25,38 +25,38 @@ const app = express();
 
 
 
-// const sessionStore = SequelizeStore(session.Store);
+const sessionStore = SequelizeStore(session.Store);
 
-// const store = new sessionStore({
-//     db: db //from the db imported
-// });
+const store = new sessionStore({
+    db: db //from the db imported
+});
 
 (async () => {
     await db.sync();
 })();
 
-// app.use(session({
-//     secret: process.env.SESS_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: store,
-//     cookie: {
-//         secure: 'auto',
-//         httpOnly: true,
-//         sameSite: 'lax'
-//     }
-// }));
+app.use(session({
+    secret: process.env.SESS_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    cookie: {
+        secure: 'auto',
+        httpOnly: true,
+        sameSite: 'lax'
+    }
+}));
 
-app.use(
-    cookieSession({
-      secret:  process.env.SESS_SECRET,
-      sameSite: 'none',
-      secure: false,
-      httpOnly: false,
-    }),
-  );
+// app.use(
+//     cookieSession({
+//       secret:  process.env.SESS_SECRET,
+//       sameSite: 'none',
+//       secure: false,
+//       httpOnly: false,
+//     }),
+//   );
 
-  app.enable('trust proxy');
+//   app.enable('trust proxy');
 
   app.use(cors({ 
     credentials: true,
