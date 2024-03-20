@@ -4,7 +4,7 @@ services:
     build: .
     container_name: rba_backend
     ports:
-      - "3000:5001"
+      - "5001:5001"
     environment:
       DB_HOST: db
       DB_USER: root
