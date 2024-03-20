@@ -8,7 +8,7 @@ import UserRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import NotesRoute from "./routes/NotesRoute.js";
-
+import cookieSession from 'cookie-session';
 
 dotenv.config();
 
@@ -23,29 +23,44 @@ const app = express();
 //     next();
 //   });
 
-app.use(cors({ origin: "https://rba-frontend.vercel.app"}));
 
-const sessionStore = SequelizeStore(session.Store);
 
-const store = new sessionStore({
-    db: db //from the db imported
-});
+// const sessionStore = SequelizeStore(session.Store);
 
-(async () => {
-    await db.sync();
-})();
+// const store = new sessionStore({
+//     db: db //from the db imported
+// });
 
-app.use(session({
-    secret: process.env.SESS_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-    cookie: {
-        secure: 'auto',
-        httpOnly: true,
-        sameSite: 'lax'
-    }
-}));
+// (async () => {
+//     await db.sync();
+// })();
+
+// app.use(session({
+//     secret: process.env.SESS_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     store: store,
+//     cookie: {
+//         secure: 'auto',
+//         httpOnly: true,
+//         sameSite: 'lax'
+//     }
+// }));
+
+app.use(
+    cookieSession({
+      secret:  process.env.SESS_SECRET,
+      sameSite: 'none',
+      secure: false,
+      httpOnly: false,
+    }),
+  );
+
+  app.enable('trust proxy');
+
+  app.use(cors({ 
+    credentials: true,
+    origin: ["https://rba-frontend.vercel.app", "http://localhost:3000"]}));
 
 app.use((req, res, next) => {
     console.log("Passed this")
@@ -65,7 +80,7 @@ app.use(ProductRoute);
 app.use(NotesRoute);
 app.use(AuthRoute);
 
-store.sync();
+// store.sync();
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server up and running...');
