@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:5.7
+    image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: Passw0rd
       MYSQL_DATABASE: auth_db
