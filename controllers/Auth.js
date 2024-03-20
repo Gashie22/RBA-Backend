@@ -27,11 +27,11 @@ export const Login = async (req, res) => {
 //funct to get user login
 export const Me = async (req, res) => {
     try {
-        // if(!req.session.userId){ //if theres no session id
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+         if(!req.session.userId){ //if theres no session id
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
 
-        // }
+         }
         const user = await User.findOne({
             attributes: ['uuid', 'name', 'email', 'role'],
             where: {

@@ -15,16 +15,16 @@ dotenv.config();
 const app = express();
 
 
-app.use(function(req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "https://elmala.com");
-    res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");//'Access-Control-Allow-Credentials'
-    res.setHeader("Access-Control-Allow-Credentials", "true");//'Access-Control-Allow-Credentials'
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-  });
+// app.use(function(req, res, next) {
+//     res.setHeader("Access-Control-Allow-Origin", "https://elmala.com");
+//     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");//'Access-Control-Allow-Credentials'
+//     res.setHeader("Access-Control-Allow-Credentials", "true");//'Access-Control-Allow-Credentials'
+//     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//     next();
+//   });
 
-app.use(cors({ origin: "https://elmala.com"}));
-//session template (store included)
+app.use(cors({ origin: "http://localhost:3000"}));
+
 const sessionStore = SequelizeStore(session.Store);
 
 const store = new sessionStore({
@@ -41,7 +41,7 @@ app.use(session({
     saveUninitialized: false,
     store: store,
     cookie: {
-        secure: 'false',
+        secure: 'auto',
         httpOnly: true,
         sameSite: 'lax'
     }
