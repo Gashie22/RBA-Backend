@@ -22,6 +22,8 @@ services:
       MYSQL_DATABASE: auth_db
     ports:
       - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
     
     networks:
       - nodejs
@@ -29,4 +31,7 @@ services:
 networks:
   nodejs:
     driver: bridge
+
+volumes:
+  db-data:
 
