@@ -7,7 +7,7 @@ import {Sequelize} from "sequelize";
 // });  
 
 const db = new Sequelize('auth_db', 'root', 'Passw0rd', {
-   host: "localhost",
+   host: "db",
    dialect: "mysql"
 });   
   
