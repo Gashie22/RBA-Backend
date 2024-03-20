@@ -64,6 +64,7 @@ app.use(
 
 app.use((req, res, next) => {
     console.log("Passed this")
+    console.log(req.session)
     if(req.session.userId !== undefined){
         console.log(req.session.userId)
     } else {
