@@ -60,7 +60,7 @@ app.use(session({
 
   app.use(cors({ 
     credentials: true,
-    origin: ["https://rba-frontend.vercel.app", "http://localhost:3000"]}));
+    origin: ["http://localhost:3000", "http://143.244.178.37:3000"]}));
 
 app.use((req, res, next) => {
     console.log("Passed this")
