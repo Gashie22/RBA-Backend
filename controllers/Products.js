@@ -96,16 +96,16 @@ export const updateProduct = async(req, res) =>{
             }
         });
         if(!product) return res.status(404).json({msg: "Result not found"});
-        const {name, representative,details,isCall,telephone,status} = req.body;
+        const {name, representative,details,isCall,telephone,status,date} = req.body;
         if(req.role === "admin"){
-            await Product.update({name, representative,details,isCall,telephone,status},{
+            await Product.update({name, representative,details,isCall,telephone,status,date},{
                 where:{
                     id: product.id
                 }
             });
         }else{
             if(req.userId !== product.userId) return res.status(403).json({msg: "User Cannot Update Admin data"});
-            await Product.update({name, representative,details,isCall,telephone,status},{
+            await Product.update({name, representative,details,isCall,telephone,status,date},{
                 where:{
                     [Op.and]:[{id: product.id}, {userId: req.userId}]
                 }

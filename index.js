@@ -73,8 +73,6 @@ app.use((req, res, next) => {
     next();
 })
 
-
-
 app.use(express.json());
 app.use(UserRoute);
 app.use(ProductRoute);
@@ -86,3 +84,4 @@ app.use(AuthRoute);
 app.listen(process.env.APP_PORT, () => {
     console.log('Server up and running...');
 });
+  
