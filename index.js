@@ -60,6 +60,7 @@ app.use(session({
 
   app.use(cors({ 
     credentials: true,
+      methods: ['GET', 'POST', 'PUT', "DELETE"],
     origin: "http://143.244.178.37:3000"}));
 
 app.use((req, res, next) => {
