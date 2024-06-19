@@ -1,8 +1,8 @@
 import {Sequelize} from "sequelize";
 
 
-const db = new Sequelize('freedb_Elmala', 'freedb_administrator', 'x4fHeQ7Z2ADpWu!', {
-    host: "sql.freedb.tech",
+const db = new Sequelize('bkjldvirugacaeljcfrd', 'ujxzryiptqmlyzed', '8wL8Z6zV3oCxnjRzoGkK', {
+   host: "bkjldvirugacaeljcfrd-mysql.services.clever-cloud.com",
    dialect: "mysql"
 });  
 
