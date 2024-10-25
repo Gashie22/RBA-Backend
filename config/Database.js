@@ -1,10 +1,10 @@
 import {Sequelize} from "sequelize";
 
 
-const db = new Sequelize('bkjldvirugacaeljcfrd', 'ujxzryiptqmlyzed', '8wL8Z6zV3oCxnjRzoGkK', {
-   host: "bkjldvirugacaeljcfrd-mysql.services.clever-cloud.com",
+const db = new Sequelize('bya0bkte7fucxfk0lidi', 'um2snlxhukab49um', 'MBilsp7EZ2oCHAXGK0FS', {
+    host: "bya0bkte7fucxfk0lidi-mysql.services.clever-cloud.com",
    dialect: "mysql"
-});  
+});   
 
 // const db = new Sequelize('auth_db', 'root', 'Passw0rd', {
 //    host: "db",
